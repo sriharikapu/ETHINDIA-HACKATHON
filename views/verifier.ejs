@@ -1,0 +1,15 @@
+<div>
+
+     
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/ethereum/web3.js/dist/web3.min.js"></script>
+    <script>    
+        async function initweb3 () {
+            var web3 = new Web3(window.web3.currentProvider);
+            console.log(web3.version);
+            const account = await web3.eth.getAccounts();
+            console.log(account[0]);
+        }
+        initweb3();
+    </script>

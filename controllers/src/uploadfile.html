@@ -1,0 +1,19 @@
+<html>
+<input type="file" name="docs" id="docs"/>
+<input type="submit" name="submitdoc"/>
+</html>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+    console.log($('#docs').val());
+    $('#sub').click(function(){
+        $.ajax({
+    type : 'POST',
+    url : 'http://localhost:5000/senddocs',
+    data: $('#docs').val(),
+    success:function(data){
+        console.log(data);
+    }
+});
+    })
+
+    </script>

@@ -1,0 +1,54 @@
+<div>
+
+    <input type="radio" name="role" value='1' id="role" />signup as bank
+        <input type="radio" name="role" value='2' id="role"/>signup as customer
+        <input type="text" id="email" name="email" placeholder="email" />
+        <input type="password" id="password" name="password" placeholder="password" />
+        <button id="signup"  >signup</button>
+
+        <br>
+        <input type="text" id="loginemail" name="loginemail" placeholder="loginemail" />
+        <input type="password" id="loginpassword" name="loginpassword" placeholder="loginpassword" />
+        <button id="login" />login
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+     
+   // console.log(tosend);
+    $('#signup').click(function(){
+        console.log($('#email').val());
+        var tosend = {
+        email : $('#email').val(),
+        password: $('#password').val(),
+        role:$('#role').val(),
+        ethaddress:''
+    }
+    console.log(tosend);
+        $.ajax({
+            url : 'http://localhost:5000/register',
+            method : 'POST',
+            data : tosend,
+            success : function(data){
+                console.log(data);
+            }
+        });
+    });
+    $('#login').click(function(){
+        console.log($('#email').val());
+        var tosendlogin = {
+        email : $('#loginemail').val(),
+        password: $('#loginpassword').val()
+    }
+    console.log(tosendlogin);
+        $.ajax({
+            url : 'http://localhost:5000/login',
+            method : 'POST',
+            data : tosendlogin,
+            success : function(data){
+               // console.log(data);
+                document.cookie="token="+data.token;
+                window.location.href="http://localhost:5000/bankprofile/"+data.token;
+            }
+        });
+    });
+</script>
